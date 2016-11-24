@@ -75,6 +75,9 @@ public class MyArrayListTest {
 		for (int i = 0; i < 10; i++) {
 			array.add(new Integer(i));
 		}
+		array.clear();
+		assertEquals(0, array.size());
+		assertTrue(array.isEmpty());
 	}
 
 	@Test
