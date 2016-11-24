@@ -23,6 +23,7 @@ public class MyArrayListTest {
 		assertEquals("first", array.get(0));
 		assertEquals(0, array.indexOf("first"));
 		assertTrue(array.contains("first"));
+		assertEquals(1, array.size());
 	}
 
 	@Test
@@ -35,18 +36,58 @@ public class MyArrayListTest {
 		assertEquals("second", array.get(1));
 		assertEquals(1, array.indexOf("second"));
 		assertTrue(array.contains("second"));
+		assertEquals(2, array.size());
 	}
 
 	@Test
 	public void testAddMany() {
 		for (int i = 0; i < 10; i++) {
-			array.add("element" + i);
+			array.add(new Integer(i));
 
-			assertEquals(i +1, array.size());
+			assertEquals(i + 1, array.size());
 			assertFalse(array.isEmpty());
-			assertEquals("element" + i, array.get(i));
-			assertEquals(i, array.indexOf("element" + i));
-			assertTrue(array.contains("element" + i));
+			assertEquals(i, array.get(i));
+			assertEquals(i, array.indexOf(i));
+			assertTrue(array.contains(i));
+			assertEquals(i+1, array.size());
 		}
+	}
+
+	@Test
+	public void insertSomeElements() {
+		for (int i = 0; i < 10; i++) {
+			array.add(new Integer(i));
+		}
+
+		array.add(0, new Integer(111));
+		assertEquals(111, array.get(0));
+		assertEquals(0, array.get(1));
+
+		array.add(3, new Integer(333));
+		assertEquals(333, array.get(3));
+		assertEquals(2, array.get(4));
+
+		assertEquals(-1, array.indexOf(new Integer(81)));
+	}
+
+	@Test
+	public void clearElements() {
+		for (int i = 0; i < 10; i++) {
+			array.add(new Integer(i));
+		}
+	}
+
+	@Test
+	public void removeSomeElements() {
+		for (int i = 0; i < 10; i++) {
+			array.add(new Integer(i));
+		}
+
+		array.remove(0);
+		assertEquals(9, array.size());
+		array.remove(8);
+		assertEquals(8, array.size());
+		array.remove(0);
+		assertEquals(7, array.size());
 	}
 }
